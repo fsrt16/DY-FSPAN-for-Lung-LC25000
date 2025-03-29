@@ -37,6 +37,70 @@ cd DY-FSPAN-for-Lung-LC25000
 ```
 
 
+## Background on Lung Cancer
+Lung cancer is one of the leading causes of cancer-related deaths worldwide. Histopathological image analysis plays a crucial role in diagnosing lung cancer, but manual examination is time-consuming and prone to variability. Deep learning-based approaches, particularly convolutional neural networks (CNNs), have demonstrated promising results in automating lung cancer detection. This study introduces DY-FSPAN, an advanced framework integrating attention mechanisms, feature summarization, and contextual masking for improved performance and interpretability.
+
+## Performance Metrics and Their Significance in Lung Cancer Detection
+
+| Metric                 | Significance |
+|------------------------|-------------|
+| **Accuracy**          | Measures the overall correctness of predictions. High accuracy ensures reliable lung cancer classification. |
+| **Precision**         | Represents the proportion of correctly identified positive cases out of total predicted positives. Important for reducing false positives, preventing misdiagnosis. |
+| **Recall (Sensitivity)** | Measures the model's ability to correctly identify all positive cases. Critical for early cancer detection to avoid false negatives. |
+| **F1-Score**          | Harmonic mean of precision and recall. Useful for balancing false positives and false negatives. |
+| **AUC-ROC**          | Evaluates the model's ability to differentiate between cancerous and non-cancerous cases. A high AUC-ROC score indicates robust performance across different thresholds. |
+| **Dice Coefficient**  | Measures overlap between predicted and ground truth segmentation. Ensures accurate tumor localization. |
+| **Intersection over Union (IoU)** | Quantifies how well the predicted segmentation matches the ground truth. Higher IoU reflects better model performance. |
+
+## Ablation Study
+
+### Impact of Model Components on Performance
+
+| Model Variant | Attention Mechanism | Y-Block | FSPAN | Feature Masking | IMA |
+|--------------|------------------|--------|-------|----------------|-----|
+| Base Model (ConvNext-Tiny) | ✗ | ✗ | ✗ | ✗ | ✗ |
+| Base Model + Attention | ✓ | ✗ | ✗ | ✗ | ✗ |
+| Base Model + Y-Block | ✓ | ✓ | ✗ | ✗ | ✗ |
+| Base Model + Y-Block + FSPAN | ✓ | ✓ | ✓ | ✗ | ✗ |
+| Base Model + Y-Block + FSPAN + Masking | ✓ | ✓ | ✓ | ✓ | ✗ |
+| Base Model + Y-Block + FSPAN + IMA | ✓ | ✓ | ✓ | ✗ | ✓ |
+| Base Model + Y-Block + FSPAN + Masking + IMA | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **Proposed DY-FSPAN (Final Model)** | **✓** | **✓** | **✓** | **✓** | **✓** |
+
+### Cross-Validation with Different Backbones
+
+| Model | Validation Performance |
+|-------|------------------------|
+| VGG16 | X% |
+| DenseNet121 | X% |
+| Inception V3 | X% |
+| VGG19 | X% |
+| ResNet50 | X% |
+| Xception | X% |
+| Inception-ResNet V2 | X% |
+| ConvNext Tiny | X% |
+
+## Optimization Techniques
+
+| SL No. | Optimization Technique |
+|--------|-----------------------|
+| 1 | Genetic Algorithm (GA) |
+| 2 | Particle Swarm Optimization (PSO) |
+| 3 | Grey Wolf Optimizer (GWO) |
+| 4 | Dragonfly Algorithm (DA) |
+| 5 | Ant Colony Optimization (ACO) |
+| 6 | CHA Proposed Architecture |
+
+## Experimental Setup for Contextual Masked-Dilation Attention
+
+| Experiment | PCMS Layers Used | Contextual Masked-Dilation Attention |
+|------------|------------------|-------------------------------------|
+| EXP 1 | 1×1 Conv Only | No |
+| EXP 2 | 3×3 (D=2), 1×1 | No |
+| EXP 3 | 5×5 (D=3), 3×3 (D=2), 1×1 | No |
+| EXP 4 | 5×5 (D=3), 3×3 (D=2), 1×1 | Yes |
+| EXP 5 | 5×5 (D=3), 3×3 (D=2), 1×1 | Yes |
+| EXP 6 | 5×5 (D=3), 3×3 (D=2), 1×1 | Yes |
 
 
 ## Methodology
